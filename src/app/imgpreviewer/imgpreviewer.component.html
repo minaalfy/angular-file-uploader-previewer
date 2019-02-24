@@ -1,0 +1,35 @@
+<div class="txtreader" (dragover)="onDragOver($event)" (wheel)="scrollZoom($event)">
+  <div class="previewer__toolbar">
+   <div class="float-right position-relative">
+      <a class="btn btn-dark btn-sm" title="Download" [href]="src" download>
+        <i class="fas fa-download"></i>
+      </a>
+   </div>
+    <div class="btn-group btn-group-sm mr-2" role="group">
+      <button type="button" class="btn btn-dark" title="Zoom Out" (click)="zoomOut()">
+        <i class="fas fa-minus"></i>
+      </button>
+      <button type="button" class="btn btn-dark" title="Zoom In" (click)="zoomIn()">
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+    <div class="btn-group btn-group-sm mr-2" role="group">
+      <button type="button" class="btn btn-dark" title="Rotate Clockwise" [class.active]="rotation > 0" (click)="rotateClockwise()">
+        <i class="fas fa-redo"></i>
+      </button>
+      <button type="button" class="btn btn-dark" title="Rotate Anti Clockwise" [class.active]="rotation < 0" (click)="rotateCounterClockwise()">
+        <i class="fas fa-undo"></i>
+      </button>
+    </div>
+    <div class="btn-group btn-group-sm mr-2" role="group">
+      <button type="button" class="btn btn-dark" title="Flip vertical" [class.active]="flipV" (click)="flipVertical()">
+        <i class="fas fa-arrows-alt-v"></i>
+      </button>
+      <button type="button" class="btn btn-dark" title="Flip Horizontal" [class.active]="flipH" (click)="flipHorizontal()">
+        <i class="fas fa-arrows-alt-h"></i>
+      </button>
+    </div>
+  </div>
+  <img [src]="src" [ngStyle]="style" (dragstart)="onDragStart($event)">
+  <div></div>
+</div>

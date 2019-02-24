@@ -1,0 +1,18 @@
+<div class="txtreader">
+  <div class="previewer__toolbar">
+    <div class="float-right position-relative">
+      <a class="btn btn-dark btn-sm" title="Download" [href]="src" download>
+        <i class="fas fa-download"></i>
+      </a>
+    </div>
+    <div class="btn-group btn-group-sm" role="group">
+      <button type="button" class="btn btn-dark" title="Zoom Out" (click)="size>=20 ? size = size - 10 : size = 10">
+        <i class="fas fa-minus"></i>
+      </button>
+      <button type="button" class="btn btn-dark" title="Zoom In" (click)="size = size + 10">
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+  </div>
+  <pre [ngStyle]="{'font-size': size + '%'}">{{data}}</pre>
+</div>

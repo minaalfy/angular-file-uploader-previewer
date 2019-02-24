@@ -8,7 +8,11 @@
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -23,9 +27,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/filepond/dist/filepond.min.css",
+              "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": ["node_modules/ngx-extended-pdf-viewer/assets/pdf.js",
+      "node_modules/ngx-extended-pdf-viewer/assets/pdf.worker.js",
+      "node_modules/ngx-extended-pdf-viewer/assets/viewer.js"]
           },
           "configurations": {
             "production": {

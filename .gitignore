@@ -3,14 +3,19 @@
 # compiled output
 /dist
 /tmp
+/.firebase
 /out-tsc
 
 # dependencies
 /node_modules
 
+# documentation
+/documentation
+
 # IDEs and editors
 /.idea
 .project
+.editorconfig
 .classpath
 .c9/
 *.launch
@@ -27,6 +32,9 @@
 # misc
 /.sass-cache
 /connect.lock
+.firebaserc
+firebase.json
+storage.rules
 /coverage
 /libpeerconnection.log
 npm-debug.log

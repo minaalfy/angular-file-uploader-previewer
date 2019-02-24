@@ -1,20 +1,38 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="attachment__control">
+  <file-pond
+    #filePond
+    [options]="pondOptions"
+    (oninit)="pondHandleInit()"
+    (onremovefile)="pondHandleRemoveFile($event)"
+    (onprocessfile)="pondHandleProcessFile($event)">
+  </file-pond>
+  <div class="text-center thumbs-container">
+    <div *ngFor="let file of files;let i = index" class="thumb__item img-thumbnail">
+      <img *ngIf="file.thumb" [src]="file.thumb" (click)="open(content, file.id)">
+      <div class="thumb__item--data">
+        <i [ngClass]="'fiv-cla fiv-icon-'+file.type"></i>
+        <span class="thumb__item--filename">{{file.name}}</span>
+      </div>
+      <div class="thumb-loader">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <button type="button" class="btn btn-sm btn-outline-dark thumb__item--remove" (click)="removeFile(file.id)"><span aria-hidden="true">&times;</span></button>
+    </div>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<ng-template #content let-d="dismiss">
+  <button type="button" class="close" aria-label="Close" (click)="d('')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <ngb-carousel *ngIf="files" [(activeId)]="activeId"  #fileCarousel="ngbCarousel" (slide)="logSlide($event)" interval="100000">
+    <ng-template ngbSlide  *ngFor="let file of files;let i = index" [id]="file.id">
+     <h4 class="filename">{{file.name}}</h4>
+      <app-txtreader [src]="file.src" *ngIf="file.type === 'txt'"></app-txtreader>
+      <app-imgpreviewer [src]="file.src" *ngIf="file.contentType === 'image'"></app-imgpreviewer>
+      <ngx-extended-pdf-viewer [showOpenFileButton]="false" [src]="file.src" *ngIf="file.type == 'pdf' && activeId === file.id" useBrowserLocale="false"></ngx-extended-pdf-viewer>
+    </ng-template>
+  </ngb-carousel>
+</ng-template>

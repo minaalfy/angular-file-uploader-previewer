@@ -1,0 +1,59 @@
+/* You can add global styles to this file, and also import other style files */
+.modal-reader {
+  .carousel-control-prev,
+  .carousel-control-next {
+    position: fixed;
+    width: 10%;
+  }
+  .carousel-indicators {
+    position: fixed;
+  }
+  .carousel-inner {
+    padding-bottom: 2em;
+  }
+  .modal-content > button.close {
+    position: absolute;
+    top: -29px;
+    right: 0;
+    z-index: 2;
+    opacity: 1;
+    color: #fff;
+    padding: 2px 7px;
+  }
+  .filename {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (min-width: 576px) {
+  .modal-reader .modal-dialog {
+    max-width: 80%;
+  }
+}
+.previewer__toolbar {
+  position: relative;
+  z-index: 2;
+  height: 32px;
+  background-color: #474747;
+  background-image: linear-gradient(
+    hsla(0, 0%, 32%, 0.99),
+    hsla(0, 0%, 27%, 0.95)
+  );
+  color: #fff;
+}
+file-pond {
+  display: block;
+  width: 100%;
+  .filepond--root {
+    margin: 0;
+  }
+  .filepond--drop-label label {
+    width: 100%;
+    align-self: stretch;
+    line-height: 4em;
+    font-size: 1em;
+  }
+}
